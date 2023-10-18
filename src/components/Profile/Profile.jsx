@@ -4,7 +4,7 @@ import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 const Profile = () => {
   return (
-    <main className={s.content}>
+    <div>
       <div className="">
         <img src={profileBg} alt="img" className={s.profile_bg} />
       </div>
@@ -12,7 +12,7 @@ const Profile = () => {
         <div className="">Avatar - description</div>
         <MyPosts />
       </div>
-    </main>
+    </div>
   );
 };
 
