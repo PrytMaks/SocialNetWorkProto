@@ -14,8 +14,8 @@
   color: aqua;
   transition: 0.5s;
 }
-.item.active{
-  color: gold;
+.active{
+  color: rgb(255, 0, 0);
 }
 a{
   color: inherit;
