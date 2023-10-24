@@ -33,8 +33,50 @@ const stateTest = {
       likesCount: 1,
     },
   ],
-
-
+  dialogsData: [
+    {
+      id: 1,
+      name: "Max",
+    },
+    {
+      id: 2,
+      name: "Boris",
+    },
+    {
+      id: 3,
+      name: "Natalia",
+    },
+    {
+      id: 4,
+      name: "Julia",
+    },
+    {
+      id: 5,
+      name: "Inessa",
+    },
+  ],
+  messagesData: [
+    {
+      id: 1,
+      message: "Hi!",
+    },
+    {
+      id: 2,
+      message: "How is your IT-Kamasutra ?",
+    },
+    {
+      id: 3,
+      message: "Yo nigger",
+    },
+    {
+      id: 4,
+      message: "Yo",
+    },
+    {
+      id: 5,
+      message: "Yo",
+    },
+  ]
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
