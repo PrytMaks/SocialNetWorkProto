@@ -1,11 +1,11 @@
 //import s from "./Profile.module.css";
-import PrfolieInfo from "./ProfileInfo/ProfileInfo.jsx";
+import ProflieInfo from "./ProfileInfo/ProfileInfo.jsx";
 import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
   return (
     <div>
-      <PrfolieInfo />
+      <ProflieInfo />
       <MyPosts />
     </div>
   );
