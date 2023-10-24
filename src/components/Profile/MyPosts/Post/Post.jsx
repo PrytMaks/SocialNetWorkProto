@@ -8,8 +8,9 @@ const Post = (props) => {
         alt=""
         className={s.post_ava}
       />
-      <div className="">{props.nameA}</div>
-      Post 1<span className="like_count">Likes: {props.likes}</span>
+      <div className="">
+      Post 1 <span className="like_count">Likes: {props.likes}</span>
+      </div>
     </div>
   );
 };
