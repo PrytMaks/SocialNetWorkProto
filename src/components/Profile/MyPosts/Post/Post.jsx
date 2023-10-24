@@ -9,7 +9,7 @@ const Post = (props) => {
         className={s.post_ava}
       />
       <div className="">
-      Post 1 <span className="like_count">Likes: {props.likes}</span>
+      Post  <span className="like_count">Likes: {props.likesCount}</span>
       </div>
     </div>
   );
