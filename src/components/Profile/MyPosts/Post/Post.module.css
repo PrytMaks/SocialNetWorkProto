@@ -4,8 +4,11 @@
   color: gold;
 }
 
-
 .post_ava{
   width: 50px;
   border-radius: 50%;
+}
+.messagesInfo{
+  display: flex;
+  flex-direction: column;
 }

@@ -1,0 +1,13 @@
+.active{
+  color: red;
+}
+
+.dialog{
+  color: gold;
+  transition: 0.5s;
+}
+
+.dialog:hover{
+  color: burlywood;
+  transition: 0.5s;
+}
