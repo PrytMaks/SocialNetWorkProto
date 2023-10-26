@@ -3,7 +3,6 @@ import Post from "./Post/Post";
 import React from "react";
 
 const MyPosts = (props) => {
-
   let newPostElement = React.createRef();
   
   let postsData = props.posts;
@@ -12,7 +11,7 @@ const MyPosts = (props) => {
   
   const addPost = () => {
     let text = newPostElement.current.value;
-    console.log(text)
+    props.addPost(text);
   }
 
   return (
