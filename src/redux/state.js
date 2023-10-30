@@ -88,7 +88,8 @@ export let addPost = () =>{
     message: state.profilePage.newPostText, 
     likesCount: 10500,
   };
-  state.profilePage.posts.push(newPost)
+  state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
   rerenderEntireTree(state);
 }
 
