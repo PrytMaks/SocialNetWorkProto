@@ -85,22 +85,24 @@ let store = {
   _rerenderEntireTree(){
     console.log('state was changed!');
   },
-  addPost(){
-    let newPost = {
-      id: this._state.profilePage.posts.length + 1,
-      message: this._state.profilePage.newPostText, 
-      likesCount: 10500,
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._rerenderEntireTree(this._state);
-  },
-  updateNewPostText(newText){
-    this._state.profilePage.newPostText = newText;
-    this._rerenderEntireTree(this._state);
-  },
   subscribe(observer){
     this._rerenderEntireTree = observer; // Паттерн обсервер наблюдатель
+  },
+
+  dispatch(action){
+    if(action.type === 'ADD-POST'){
+      let newPost = {
+        id: this._state.profilePage.posts.length + 1,
+        message: this._state.profilePage.newPostText, 
+        likesCount: 10500,
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._rerenderEntireTree(this._state);
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+        this._state.profilePage.newPostText = action.text;
+        this._rerenderEntireTree(this._state);
+    }
   }
 }
 
