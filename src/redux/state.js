@@ -1,8 +1,9 @@
-import rerenderEntireTree from "../render"; //Циклический импорт!!!
+let rerenderEntireTree = () => {
+  console.log('state was changed!');
+};
 
 let state = {
   profilePage: {
-
     posts: [
       {
         id: 1,
@@ -80,9 +81,10 @@ let state = {
     ]
   },
 };
+
 window.state = state;
 
-export let addPost = () =>{
+export const addPost = () =>{
   let newPost = {
     id: state.profilePage.posts.length + 1,
     message: state.profilePage.newPostText, 
@@ -93,9 +95,13 @@ export let addPost = () =>{
   rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText) =>{
-  state.profilePage.newPostText = newText
+export const updateNewPostText = (newText) =>{
+  state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer; // Паттерн обсервер наблюдатель
 }
 
 export default state;
