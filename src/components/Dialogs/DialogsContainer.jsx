@@ -10,6 +10,7 @@ const DialogsContainer = () => {
   return (
     <StoreContext.Consumer>
       {(store) => {
+        
         let state = store.getState().dialogsPage;
 
         let onNewMessageChange = (body) => {
