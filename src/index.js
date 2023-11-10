@@ -1,19 +1,21 @@
-import reportWebVitals from './reportWebVitals';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import store from './redux/reduxStore';
+import reportWebVitals from "./reportWebVitals";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import store from "./redux/reduxStore";
+import StoreContext from "./storeContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 let rerenderEntireTree = () => {
   root.render(
     <React.StrictMode>
-      <App state = {store.getState()} 
-           dispatch = {store.dispatch.bind(store)}  store = {store}/>
+      <StoreContext.Provider value = {store}>
+        <App />
+      </StoreContext.Provider>
     </React.StrictMode>
   );
-}
+};
 
 rerenderEntireTree(store.getState());
 
