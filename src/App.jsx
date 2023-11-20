@@ -6,9 +6,9 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 // import News from "./components/News/News";
 // import Music from "./components/Music/Music";
 // import Settings from "./components/Settings/Settings";
-import Users from "./components/Users/Users";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import React from "react";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = (props) => {
   return (
@@ -23,7 +23,7 @@ const App = (props) => {
             {/* <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} /> */}
-            <Route path='/users' element={<Users/>}/>
+            <Route path='/users' element={<UsersContainer/>}/>
           </Routes>
         </div>
       </div>
