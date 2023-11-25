@@ -21,7 +21,7 @@ class Users extends React.Component {
     });
   }
   render() {
-    //Высчитываем количество нужных нам страниц
+    //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера 
     let pagesCount = this.props.totalUsersCount / this.props.pageSize;
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
