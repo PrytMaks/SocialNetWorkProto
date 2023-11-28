@@ -4,9 +4,9 @@ import userPhoto from '../../assets/images/usualProfile.png'
 
 const Users = (props) => {
   //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
-  for (let i = 1; i <= pagesCount; i++) {
+  for (let i = 1; i <= 10 ; i++) {
     pages.push(i);
   };
 
