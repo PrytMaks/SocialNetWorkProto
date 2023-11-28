@@ -1,7 +1,6 @@
 import s from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
-import Profile from "./components/Profile/Profile";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 // import News from "./components/News/News";
 // import Music from "./components/Music/Music";
@@ -9,6 +8,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import React from "react";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = (props) => {
   return (
@@ -18,7 +18,7 @@ const App = (props) => {
         <Navbar />
         <div className={s.app_wrapper_content}>
           <Routes>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/*" element={<ProfileContainer />} />
             <Route path="/dialogs/*" element={<DialogsContainer />} />
             {/* <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />

@@ -1,22 +1,26 @@
-import s from './users.module.css';
+import s from "./users.module.css";
 import React from "react";
-import userPhoto from '../../assets/images/usualProfile.png'
+import userPhoto from "../../assets/images/usualProfile.png";
+import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
-  //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера 
+  //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера
   //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
-  for (let i = 1; i <= 10 ; i++) {
+  for (let i = 1; i <= 10; i++) {
     pages.push(i);
-  };
+  }
 
   return (
     <div className="">
       <div className="">
         {pages.map((page) => (
-
-          <span className={props.currentPage === page ? s.selectedPage : ""}
-          onClick={(e) => {props.onPageChanged(page)}}
+          <span
+            className={props.currentPage === page ? s.selectedPage : ""}
+            onClick={(e) => {
+              props.onPageChanged(page);
+            }}
+            key = {page}
           >
             {page}
           </span>
@@ -26,21 +30,19 @@ const Users = (props) => {
         <div key={u.id}>
           <span>
             <div className={s.photoWrapper}>
-              <img
-                src={u.photos.small != null ? u.photos.small : userPhoto}
-                alt=""
-                className={s.userPhoto}
-              />
+              <NavLink to={'/profile/' + u.id}>
+                <img
+                  src={u.photos.small != null ? u.photos.small : userPhoto}
+                  alt=""
+                  className={s.userPhoto}
+                />
+              </NavLink>
             </div>
             <div>
               {u.followed ? (
-                <button onClick={() => props.unfollow(u.id)}>
-                  Unfollow
-                </button>
+                <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
               ) : (
-                <button onClick={() => props.follow(u.id)}>
-                  Follow
-                </button>
+                <button onClick={() => props.follow(u.id)}>Follow</button>
               )}
             </div>
           </span>
@@ -58,6 +60,6 @@ const Users = (props) => {
       ))}
     </div>
   );
-}
+};
 
 export default Users;

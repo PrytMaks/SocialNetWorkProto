@@ -8,4 +8,11 @@
 
 .descriptionBlock{
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.largePhoto{
+  display: block;
+  width: 200px;
 }
