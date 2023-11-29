@@ -28,7 +28,7 @@ import { useParams } from "react-router-dom";
 // }
 
 const ProfileContainer = (props) => {
-  debugger;
+
   let { userId } = useParams();
   
   if (!userId) {

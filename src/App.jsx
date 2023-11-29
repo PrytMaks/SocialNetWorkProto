@@ -1,6 +1,6 @@
 import s from "./App.module.css";
 import Navbar from "./components/Navbar/Navbar";
-import Header from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 // import News from "./components/News/News";
 // import Music from "./components/Music/Music";
@@ -14,7 +14,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <div className={s.app_wrapper}>
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className={s.app_wrapper_content}>
           <Routes>
