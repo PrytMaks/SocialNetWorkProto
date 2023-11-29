@@ -4,7 +4,7 @@ import userPhoto from "../../assets/images/usualProfile.png";
 import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
-  //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера
+  //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера (кол-во страниц определили сами = 5, нужно разделить общее колво пользователей на колво страниц) 
   //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= 10; i++) {
