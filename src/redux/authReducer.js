@@ -27,7 +27,7 @@ const authReducer = (state = initialState, action) => {
       return state;
   }
 }
-
+//AC можно не писать 
 export const setAuthUserDataAC = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
 export const setCurrentAuthUserDataAC = (currentUserProfile) => ({type: SET_CURRENT_AUTH_USER_DATA, currentUserProfile}); 
 
