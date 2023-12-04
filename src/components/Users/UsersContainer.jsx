@@ -8,6 +8,7 @@ class UsersAPIComponent extends React.Component {
   componentDidMount() {
     this.props.toggleIsFetching(true);
     //импортировали getUsers из DAL API (слой доступа к данным)
+    
     usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
       .then((data) => {
         this.props.toggleIsFetching(false);
