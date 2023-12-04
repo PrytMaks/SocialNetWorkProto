@@ -37,12 +37,14 @@ const ProfileContainer = (props) => {
   
   useEffect( () => {
     axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
+        withCredentials: true,
+      })
       .then((response) => {
         props.setUserProfile(response.data);
       });
-  }, [props, userId]);
-
+  }, [userId]);
+ 
   return (
     <div>
       <Profile profile={props.profile} />
