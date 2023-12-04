@@ -4,7 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setUserProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
-
+import  {getProfile}  from "../../api/api.js";
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
 
@@ -36,12 +36,9 @@ const ProfileContainer = (props) => {
   }
   
   useEffect( () => {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        props.setUserProfile(response.data);
+    getProfile(userId)
+      .then((data) => {
+        props.setUserProfile(data);
       });
   }, [userId]);
  

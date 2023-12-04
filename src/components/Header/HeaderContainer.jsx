@@ -3,25 +3,20 @@ import Header from './Header';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setAuthUserDataAC, setCurrentAuthUserDataAC} from '../../redux/authReducer';
-
+import {getProfile, getAuth} from '../../api/api'
 
 const HeaderContainer = (props) => {
 
   useEffect( () => {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true
-      })
-      .then((response) => {
+    getAuth()
+      .then((data) => {
 
-        if(response.data.resultCode === 0){
-          let {id, login, email} = response.data.data
+        if(data.resultCode === 0){
+          let {id, login, email} = data.data
           props.setAuthUserDataAC(id, email, login);
           //Сетаем свою аву из API 
-          axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`, {
-            withCredentials: true
-          }).then((response) => {
-              let currentAuthUser = response.data
+          getProfile(id).then((data) => {
+              let currentAuthUser = data;
               props.setCurrentAuthUserDataAC(currentAuthUser);
             })
         }
