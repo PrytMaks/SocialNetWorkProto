@@ -33,7 +33,5 @@ export const getProfile = (userId) => {
 
 export const getAuth = () => {
   return  axiosInstance
-  .get(`auth/me`, {
-    withCredentials: true
-  }).then(response => response.data);
+  .get(`auth/me`).then(response => response.data);
 }
