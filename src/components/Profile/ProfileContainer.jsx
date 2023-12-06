@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Profile from "./Profile.jsx";
 import { connect } from "react-redux";
-import {getProfile } from "../../redux/profileReducer.js";
+import {getUserProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
 
 
@@ -35,7 +35,7 @@ const ProfileContainer = (props) => {
   }
   
   useEffect( () => {
-    props.getProfile(userId);
+    props.getUserProfile(userId);
   }, [userId]);
  
   return (
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getProfile })(ProfileContainer);
+export default connect(mapStateToProps, { getUserProfile })(ProfileContainer);
