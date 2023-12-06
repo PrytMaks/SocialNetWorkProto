@@ -20,6 +20,13 @@ export const usersAPI = {
     return axiosInstance.get(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => response.data);
   },
+  follow(userId){
+    return axiosInstance.post(`follow/${userId}`)
+  },
+  unfollow(userId){
+    return axiosInstance.delete(`follow/${userId}`)
+  }
+
 }
 
 export const getProfile = (userId) => {

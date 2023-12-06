@@ -1,3 +1,4 @@
+import { usersAPI } from "../api/api";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -73,12 +74,55 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export const follow = (id) => ({ type: FOLLOW, userId: id });
-export const unfollow = (id) => ({ type: UNFOLLOW, userId: id });
+export const followSuccess = (id) => ({ type: FOLLOW, userId: id });
+export const unfollowSuccess = (id) => ({ type: UNFOLLOW, userId: id });
 export const setUsers = (users) => ({type: SET_USERS, users: users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_USERS_TOTAL_COUNT, count: totalUsersCount});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching: isFetching});
 export const toggleFollowingInProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
+
+//Thunk 
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    //импортировали getUsers из DAL API (слой доступа к данным)
+    
+    usersAPI.getUsers(currentPage, pageSize)
+      .then((data) => {
+        dispatch(setCurrentPage(currentPage));
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount));
+      });
+  }
+}
+
+export const unfollow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingInProgress(true, userId))
+    usersAPI.unfollow(userId)
+      .then((response) => {
+        if (response.data.resultCode === 0) {
+          dispatch(unfollowSuccess(userId));
+        }
+        dispatch(toggleFollowingInProgress(false, userId));
+      });
+  }
+}
+
+export const follow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingInProgress(true, userId));
+    usersAPI.follow(userId)
+      .then((response) => {
+        if (response.data.resultCode === 0) {
+          dispatch(followSuccess(userId));
+        }
+        dispatch(toggleFollowingInProgress(false, userId));
+      });
+  } 
+}
 
 export default usersReducer;

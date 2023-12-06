@@ -1,30 +1,27 @@
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingInProgress} from '../../redux/usersReducer';
+import { follow, unfollow, /*setUsers setCurrentPage, setTotalUsersCount, toggleIsFetching,*/ toggleFollowingInProgress, getUsersThunkCreator} from '../../redux/usersReducer';
 import { connect } from 'react-redux';
 import React from "react";
 import Users from './Users';
 import Preloader from '../common/preloader/Preloader';
-import {usersAPI} from '../../api/api';
+//import {usersAPI} from '../../api/api'; После подключения Санок все асинхронные операции в BLL - DAL
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-    //импортировали getUsers из DAL API (слой доступа к данным)
+    // this.props.toggleIsFetching(true);
+    // //импортировали getUsers из DAL API (слой доступа к данным)
     
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      .then((data) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-      });
+    // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+    //   .then((data) => {
+    //     this.props.toggleIsFetching(false);
+    //     this.props.setUsers(data.items);
+    //     this.props.setTotalUsersCount(data.totalCount);
+    //   });
+    //Заменили одной только санкой  Thunk
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
   }
   onPageChanged = (pageNum) => {
-    this.props.setCurrentPage(pageNum);
-    this.props.toggleIsFetching(true);
 
-    usersAPI.getUsers(pageNum, this.props.pageSize)
-    .then((data) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers([...data.items]);
-    });
+
+    this.props.getUsersThunkCreator(pageNum, this.props.pageSize)
   }
   render() {
     return <>
@@ -38,7 +35,6 @@ class UsersAPIComponent extends React.Component {
       unfollow = {this.props.unfollow}
       users = {this.props.users}
       followingInProgress={this.props.followingInProgress}
-      toggleFollowingInProgress = {this.props.toggleFollowingInProgress}
     />
     </>
   }
@@ -79,7 +75,9 @@ const mapStateToProps = (state) => {
 //   }
 // }
 
-const UsersContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingInProgress})(UsersAPIComponent);
+const UsersContainer = connect(mapStateToProps, 
+  {follow, unfollow,
+  toggleFollowingInProgress, getUsersThunkCreator})(UsersAPIComponent);
 
 
 
