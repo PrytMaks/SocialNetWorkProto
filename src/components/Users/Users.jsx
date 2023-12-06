@@ -2,7 +2,6 @@ import s from "./users.module.css";
 import React from "react";
 import userPhoto from "../../assets/images/usualProfile.png";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 const Users = (props) => {
   //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера (кол-во страниц определили сами = 5, нужно разделить общее колво пользователей на колво страниц)
   //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
