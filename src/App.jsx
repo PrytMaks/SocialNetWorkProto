@@ -9,6 +9,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import React from "react";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import Login from './components/Login/Login';
 
 const App = (props) => {
   return (
@@ -24,6 +25,7 @@ const App = (props) => {
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} /> */}
             <Route path='/users' element={<UsersContainer/>}/>
+            <Route path='/login' element={<Login/>}/>
           </Routes>
         </div>
       </div>

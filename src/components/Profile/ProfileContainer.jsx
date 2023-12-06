@@ -3,6 +3,7 @@ import Profile from "./Profile.jsx";
 import { connect } from "react-redux";
 import {getUserProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
@@ -37,6 +38,10 @@ const ProfileContainer = (props) => {
   useEffect( () => {
     props.getUserProfile(userId);
   }, [userId]);
+
+  if(!props.isAuth){
+    return <Navigate to={'/login'}></Navigate>
+  }
  
   return (
     <div>
@@ -48,6 +53,7 @@ const ProfileContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
   };
 };
 
