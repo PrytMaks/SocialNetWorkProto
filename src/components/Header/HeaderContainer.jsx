@@ -1,7 +1,7 @@
 import Header from './Header';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {getAuth} from '../../redux/authReducer';
+import {getAuthUserData} from '../../redux/authReducer';
 
 
 const HeaderContainer = (props) => {
@@ -21,7 +21,7 @@ const HeaderContainer = (props) => {
     //     }
 
     //   }); Переместили все в санку 
-    props.getAuth();
+    props.getAuthUserData();
   }, [props]);
 
   return ( 
@@ -38,4 +38,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {getAuth})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserData})(HeaderContainer);
