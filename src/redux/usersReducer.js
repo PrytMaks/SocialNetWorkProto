@@ -98,7 +98,7 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
       });
   }
 }
-
+//Далее санки и санк криэйторы будут называться как обычные функции (так принято) вместо ***ThunkCreator и т.д. 
 export const unfollow = (userId) => {
   return (dispatch) => {
     dispatch(toggleFollowingInProgress(true, userId))

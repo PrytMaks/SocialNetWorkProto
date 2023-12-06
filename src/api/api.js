@@ -25,20 +25,14 @@ export const usersAPI = {
   },
   unfollow(userId){
     return axiosInstance.delete(`follow/${userId}`)
+  },
+  getProfile(userId){
+    return axiosInstance
+      .get(`profile/${userId}`)
+      .then((response) => response.data);
+  },
+  getAuth(){
+    return  axiosInstance
+    .get(`auth/me`).then(response => response.data);
   }
-
-}
-
-export const getProfile = (userId) => {
-  return axiosInstance
-    .get(`profile/${userId}`, {
-      withCredentials: true,
-    })
-    .then((response) => response.data);
-};
-
-
-export const getAuth = () => {
-  return  axiosInstance
-  .get(`auth/me`).then(response => response.data);
 }

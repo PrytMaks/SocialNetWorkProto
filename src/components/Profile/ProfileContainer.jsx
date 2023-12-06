@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import Profile from "./Profile.jsx";
-import axios from "axios";
 import { connect } from "react-redux";
 import { setUserProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
-import  {getProfile}  from "../../api/api.js";
+import  {usersAPI}  from "../../api/api.js";
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
 
@@ -36,7 +35,7 @@ const ProfileContainer = (props) => {
   }
   
   useEffect( () => {
-    getProfile(userId)
+    usersAPI.getProfile(userId)
       .then((data) => {
         props.setUserProfile(data);
       });
