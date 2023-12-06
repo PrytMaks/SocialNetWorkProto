@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import Profile from "./Profile.jsx";
 import { connect } from "react-redux";
-import { setUserProfile } from "../../redux/profileReducer.js";
+import {getProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
-import  {usersAPI}  from "../../api/api.js";
+
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
 
@@ -35,10 +35,7 @@ const ProfileContainer = (props) => {
   }
   
   useEffect( () => {
-    usersAPI.getProfile(userId)
-      .then((data) => {
-        props.setUserProfile(data);
-      });
+    props.getProfile(userId);
   }, [userId]);
  
   return (
@@ -54,4 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);
+export default connect(mapStateToProps, { getProfile })(ProfileContainer);

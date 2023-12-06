@@ -1,4 +1,6 @@
+import { usersAPI } from "../api/api";
 const SET_USER_DATA = 'SET_USER_DATA';
+
 const SET_CURRENT_AUTH_USER_DATA = 'SET_CURRENT_AUTH_USER_DATA';
 let initialState = {
   userId: null,
@@ -30,5 +32,23 @@ const authReducer = (state = initialState, action) => {
 //AC можно не писать 
 export const setAuthUserDataAC = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
 export const setCurrentAuthUserDataAC = (currentUserProfile) => ({type: SET_CURRENT_AUTH_USER_DATA, currentUserProfile}); 
+
+export const getAuth = () => {
+  return (dispatch) => {
+    usersAPI.getAuth()
+    .then((data) => {
+      if(data.resultCode === 0){
+        let {id, login, email} = data.data
+        dispatch(setAuthUserDataAC(id, email, login));
+        //Сетаем свою аву из API аву не поставил так как не смог сетнуть фото в профиле ннет возможности
+        usersAPI.getProfile(id).then((data) => {
+            let currentAuthUser = data;
+            dispatch(setCurrentAuthUserDataAC(currentAuthUser))
+          })
+      }
+    });
+  }
+}
+
 
 export default authReducer;

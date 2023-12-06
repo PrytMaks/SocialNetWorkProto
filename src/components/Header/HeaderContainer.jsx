@@ -1,26 +1,27 @@
 import Header from './Header';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setAuthUserDataAC, setCurrentAuthUserDataAC} from '../../redux/authReducer';
-import {usersAPI} from '../../api/api'
+import {getAuth} from '../../redux/authReducer';
+
 
 const HeaderContainer = (props) => {
 
   useEffect( () => {
-    usersAPI.getAuth()
-      .then((data) => {
+    // usersAPI.getAuth()
+    //   .then((data) => {
 
-        if(data.resultCode === 0){
-          let {id, login, email} = data.data
-          props.setAuthUserDataAC(id, email, login);
-          //Сетаем свою аву из API аву не поставил так как не смог сетнуть фото в профиле ннет возможности
-          usersAPI.getProfile(id).then((data) => {
-              let currentAuthUser = data;
-              props.setCurrentAuthUserDataAC(currentAuthUser);
-            })
-        }
+    //     if(data.resultCode === 0){
+    //       let {id, login, email} = data.data
+    //       props.setAuthUserDataAC(id, email, login);
+    //       //Сетаем свою аву из API аву не поставил так как не смог сетнуть фото в профиле ннет возможности
+    //       usersAPI.getProfile(id).then((data) => {
+    //           let currentAuthUser = data;
+    //           props.setCurrentAuthUserDataAC(currentAuthUser);
+    //         })
+    //     }
 
-      });
+    //   }); Переместили все в санку 
+    props.getAuth();
   }, [props]);
 
   return ( 
@@ -37,4 +38,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {setAuthUserDataAC, setCurrentAuthUserDataAC})(HeaderContainer);
+export default connect(mapStateToProps, {getAuth})(HeaderContainer);
