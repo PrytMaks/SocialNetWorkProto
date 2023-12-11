@@ -4,6 +4,8 @@ import {
   updateNewMessageBodyCreator,
 } from "../../redux/dialogsReducer";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "../hoc/AuthRedirect";
+
 
 // const DialogsContainer = () => {
 //   return (
@@ -35,7 +37,6 @@ import { connect } from "react-redux";
 let mapStateToProps = (state) => {
   return {
     dialogsPage: state.dialogsPage,
-    isAuth: state.auth.isAuth
   }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -49,5 +50,10 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+//Создали отдельный MSTP для connect, всего для одного пропса .
+
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 export default DialogsContainer;
