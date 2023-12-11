@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {getUserProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../hoc/AuthRedirect.jsx";
+import { compose } from "redux";
 
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
@@ -53,6 +54,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
-export default connect(mapStateToProps, { getUserProfile })(AuthRedirectComponent);
+
+
+
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withAuthRedirect
+)(ProfileContainer);

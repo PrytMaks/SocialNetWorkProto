@@ -4,8 +4,10 @@ import React from "react";
 import Users from './Users';
 import Preloader from '../common/preloader/Preloader';
 import { withAuthRedirect } from '../hoc/AuthRedirect';
+import { compose } from 'redux';
 //import {usersAPI} from '../../api/api'; После подключения Санок все асинхронные операции в BLL - DAL
 class UsersAPIComponent extends React.Component {
+  
   componentDidMount() {
     // this.props.toggleIsFetching(true);
     // //импортировали getUsers из DAL API (слой доступа к данным)
@@ -74,9 +76,14 @@ const mapStateToProps = (state) => {
 //     }
 //   }
 // }
-let withRedirect = withAuthRedirect(UsersAPIComponent)
-
-const UsersContainer = connect(mapStateToProps, {follow, unfollow, toggleFollowingInProgress, getUsersThunkCreator})(withRedirect);
 
 
-export default UsersContainer;
+
+
+// let withRedirect = withAuthRedirect(UsersAPIComponent)
+
+
+export default compose(
+  connect(mapStateToProps, {follow, unfollow, toggleFollowingInProgress, getUsersThunkCreator}),
+  withAuthRedirect
+)(UsersAPIComponent);

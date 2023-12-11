@@ -5,6 +5,7 @@ import {
 } from "../../redux/dialogsReducer";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../hoc/AuthRedirect";
+import { compose } from "redux";
 
 
 // const DialogsContainer = () => {
@@ -50,7 +51,13 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-export default DialogsContainer;
+//Вместо вызова HOC, и connect можно поместить все в Compose;
+
+// let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+// const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect,  
+)(Dialogs);

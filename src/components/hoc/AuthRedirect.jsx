@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 let mapStateToPropsForRedirect = (state) => {
   return {
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
   }
 }
 
