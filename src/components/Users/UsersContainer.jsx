@@ -41,7 +41,6 @@ class UsersAPIComponent extends React.Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     users: state.usersPage.users,
@@ -77,12 +76,7 @@ const mapStateToProps = (state) => {
 // }
 let withRedirect = withAuthRedirect(UsersAPIComponent)
 
-const UsersContainer = connect(mapStateToProps, 
-  {follow, unfollow,
-  toggleFollowingInProgress, getUsersThunkCreator})(withRedirect);
-
-
-
+const UsersContainer = connect(mapStateToProps, {follow, unfollow, toggleFollowingInProgress, getUsersThunkCreator})(withRedirect);
 
 
 export default UsersContainer;

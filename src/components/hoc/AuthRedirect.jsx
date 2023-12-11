@@ -7,14 +7,12 @@ let mapStateToPropsForRedirect = (state) => {
   }
 }
 
-//Ниже мой HOC который по пропсам из целевой компоненты 
 export const withAuthRedirect = (Component) => {
   const RedirectComponent = (props) => {
     if(!props.isAuth) return <Navigate to={'/login'}></Navigate>
 
     return <Component {...props}/>
   }
-
   const ConnectedRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
   
   return ConnectedRedirectComponent

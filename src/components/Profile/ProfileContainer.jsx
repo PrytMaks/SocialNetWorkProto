@@ -3,7 +3,6 @@ import Profile from "./Profile.jsx";
 import { connect } from "react-redux";
 import {getUserProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import { withAuthRedirect } from "../hoc/AuthRedirect.jsx";
 
 
@@ -40,10 +39,6 @@ const ProfileContainer = (props) => {
     props.getUserProfile(userId);
   }, [userId]);
 
-  if(!props.isAuth){
-    return <Navigate to={'/login'}></Navigate>
-  }
- 
   return (
     <div>
       <Profile profile={props.profile} />

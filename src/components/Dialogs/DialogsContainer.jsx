@@ -50,9 +50,6 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-//Создали отдельный MSTP для connect, всего для одного пропса .
-
-
 let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
