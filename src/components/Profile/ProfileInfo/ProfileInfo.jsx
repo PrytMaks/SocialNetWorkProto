@@ -1,7 +1,7 @@
 import s from "./ProfileInfo.module.css";
 import profileBg from "../profileBg.jpg";
 import Preloader from "../../common/preloader/Preloader";
-
+import ProfileStatus from "./ProfileStatus";
 const ProfileInfo = (props) => {
 
   if(!props.profile){
@@ -16,6 +16,7 @@ const ProfileInfo = (props) => {
         <span>{props.profile.fullName}</span>
         <span> O пользователе: {props.profile.aboutMe}</span>
       </div>
+      <ProfileStatus status = {'Hello world!!!'}></ProfileStatus>
     </div>
   );
 };
