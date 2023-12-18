@@ -35,7 +35,7 @@ const ProfileContainer = (props) => {
   if (!userId) {
     userId = 30384;
   }
-  
+  //Написал так чтоб избежать ошибки ESLint о зависимостях в useEffect;
   let {getUserProfile, getStatus} = props; 
 
   
