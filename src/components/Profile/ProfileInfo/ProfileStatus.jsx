@@ -5,7 +5,7 @@ import { useState } from 'react';
 import s from './ProfileStatus.module.css';
 
 const ProfileStatus = (props) => {
-  debugger;
+  
   let [state, setState] = useState({editMode: false, status: props.status});
 
 
