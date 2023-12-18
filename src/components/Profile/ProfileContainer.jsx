@@ -40,7 +40,7 @@ const ProfileContainer = (props) => {
 
   
   useEffect( () => {
-    console.log('from Effect')
+    console.log('from Effect');
     getUserProfile(userId);
     getStatus(userId);
   }, [userId, getUserProfile, getStatus]);

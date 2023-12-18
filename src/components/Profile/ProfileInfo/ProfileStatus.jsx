@@ -5,27 +5,37 @@ import { useState } from 'react';
 import s from './ProfileStatus.module.css';
 
 const ProfileStatus = (props) => {
+  debugger;
   let [state, setState] = useState({editMode: false, status: props.status});
-  
+
+
   const activateEditMode = () => {
     //setState - асинхронен
+ 
     setState({...state, editMode: true});
-    
+
   }
-  const deactivateEditMode = () => {
-    // setState - асинхронен
-   setState({
-    ...state,
-    editMode: false
-   })
-    props.updateStatus(state.status)
-  }
+
   const onStatusChange = (e) => {
     setState({
       ...state,
       status: e.currentTarget.value
     })
   }
+
+  const deactivateEditMode = () => {
+    // setState - асинхронен
+   setState({
+    ...state,
+    editMode: false
+   })
+   props.updateStatus(state.status);
+
+        //props.updateStatus(title); 
+    
+   // props.updateStatus(props.status);
+  }
+
   return (
     <div className="">
       {!state.editMode && (
