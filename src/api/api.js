@@ -27,10 +27,25 @@ export const usersAPI = {
     return axiosInstance.delete(`follow/${userId}`)
   },
   getProfile(userId){
+    console.warn('Obsolete method, please use profileAPI object');
+    return profileAPI.getProfile(userId);
+  },
+};
+
+export const profileAPI = {
+  getProfile(userId){
     return axiosInstance
       .get(`profile/${userId}`)
       .then((response) => response.data);
   },
+  getStatus(userId){
+    return axiosInstance.get(`profile/status/${userId}`);
+  },
+  updateStatus(status){
+    return axiosInstance.put('profile/status', {
+      status: status
+    });
+  }
 }
 
 export const authAPI = {
