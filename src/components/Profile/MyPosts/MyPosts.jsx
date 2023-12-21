@@ -1,9 +1,8 @@
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-import AddNewPostReduxForm from "./MyPostReduxInput";
+import AddNewPostReduxForm from "./MyPostReduxInput/MyPostReduxInput";
 const MyPosts = (props) => {
-
   //let newPostElement = React.createRef();
   let postsData = props.posts;
 
@@ -18,14 +17,10 @@ const MyPosts = (props) => {
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
-        <AddNewPostReduxForm 
-          onSubmit={onAddPost}
-        />
+      <AddNewPostReduxForm onSubmit={onAddPost} />
       <div className={s.posts}>{postsElements} </div>
     </div>
   );
 };
-
-
 
 export default MyPosts;
