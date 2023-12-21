@@ -3,12 +3,10 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 import { Navigate } from "react-router-dom";
-
+import AddMessageReduxForm from './DialogsTextInput'
 const Dialogs = (props) => {
   
   let state = props.dialogsPage;
-
-  let newMessageBody = state.newMessageText;
 
   let dialogsElements = state.dialogs.map((el) => (
     <DialogItem name={el.name} id={el.id} key={el.id} />
@@ -17,17 +15,14 @@ const Dialogs = (props) => {
     <Message message={el.message} id={el.id} key={el.id} />
   ));
 
-  let onNewMessageChange = (e) => {
-    let body = e.target.value;
-    props.updateNewMessageBody(body);
-  };
-  
-  let onSendMessageClick = () => {
-    props.sendMessage();
-  };
+  let addNewMessage = (values) => {
+    props.sendMessage(values.newMessageBody);
+  }
+
   if(!props.isAuth){
     return <Navigate to={'/login'}></Navigate>
   }
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs_items}>{dialogsElements}</div>
@@ -35,15 +30,7 @@ const Dialogs = (props) => {
         <div className="">
           {messagesElements} 
         </div>
-        <div className="">
-          <textarea
-            onChange={onNewMessageChange}
-            value={newMessageBody}
-          />
-        </div>
-        <div className="">
-          <button onClick={onSendMessageClick}>Send!</button>
-        </div>
+        <AddMessageReduxForm onSubmit={addNewMessage}/>
       </div>
     </div>
   );
