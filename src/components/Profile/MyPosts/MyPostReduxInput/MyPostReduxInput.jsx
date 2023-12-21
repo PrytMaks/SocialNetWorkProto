@@ -4,14 +4,14 @@ import {
   requiredField,
 } from "../../../utils/validators/validators";
 import { TextArea } from "../../../common/preloader/formsControls/formsControls";
-const maxLength10 = maxLengthCreator(10);
+const maxLength30 = maxLengthCreator(30);
 
 const AddNewPostForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div className="">
         <Field
-          validate={[requiredField, maxLength10]}
+          validate={[requiredField, maxLength30]}
           component={TextArea}
           name={"newPostText"}
           id=""
