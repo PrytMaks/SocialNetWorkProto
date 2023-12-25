@@ -4,7 +4,7 @@ import { Input } from "../common/preloader/formsControls/formsControls";
 import { requiredField } from "../utils/validators/validators";
 import { login } from "../../redux/authReducer";
 import { Navigate } from "react-router-dom";
-
+import s from '../common/preloader/formsControls/formsControls.module.css'
 const LoginForm = (props) => {
   
   return (
@@ -12,8 +12,8 @@ const LoginForm = (props) => {
       <div>
         <Field 
           validate={[requiredField]}
-          placeholder={"Login"} 
-          name={'login'} 
+          placeholder={"login"}
+          name={'login'}
           component={Input}/>
       </div>
       <div>
@@ -28,6 +28,9 @@ const LoginForm = (props) => {
         <Field type={"checkbox"} name={'rememberMe'} component={Input} />
         Remember me
       </div>
+      {props.error && <div className={s.formSummaryError}>
+        {props.error}
+      </div>}
       <div>
         <button>Login</button>
       </div>

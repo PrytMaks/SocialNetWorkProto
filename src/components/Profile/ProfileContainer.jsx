@@ -33,7 +33,8 @@ const ProfileContainer = (props) => {
   let { userId } = useParams();
   
   if (!userId) {
-    userId = 30384;
+    
+    userId = props.authorizedUserId;
   }
   //Написал так чтоб избежать ошибки ESLint о зависимостях в useEffect;
   let {getUserProfile, getStatus} = props; 
@@ -60,6 +61,8 @@ const mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
   };
 };
 
