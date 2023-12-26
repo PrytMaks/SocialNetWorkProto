@@ -40,41 +40,42 @@ export const setCurrentAuthUserDataAC = (currentUserProfile) => ({
   currentUserProfile,
 });
 
-export const getAuthUserData = () => {
-  return (dispatch) => {
-    authAPI.me().then((data) => {
-      if (data.resultCode === 0) {
-        let { id, login, email } = data.data;
-        dispatch(setAuthUserDataAC(id, email, login, true));
-        //Сетаем свою аву из API аву не поставил так как не смог сетнуть фото в профиле ннет возможности
-        // Внизу старый код который толком не пригодился
-        // usersAPI.getProfile(id).then((data) => {
-        //     let currentAuthUser = data;
-        //     dispatch(setCurrentAuthUserDataAC(currentAuthUser))
-        //   })
-      }
-    });
-  };
+export const getAuthUserData = () => (dispatch) => {
+  return authAPI.me().then((data) => {
+    if (data.resultCode === 0) {
+      let { id, login, email } = data.data;
+      dispatch(setAuthUserDataAC(id, email, login, true));
+      //Сетаем свою аву из API аву не поставил так как не смог сетнуть фото в профиле ннет возможности
+      // Внизу старый код который толком не пригодился
+      // usersAPI.getProfile(id).then((data) => {
+      //     let currentAuthUser = data;
+      //     dispatch(setCurrentAuthUserDataAC(currentAuthUser))
+      //   })
+    }
+  });
 };
+
 export const login = (email, password, rememberMe) => (dispatch) => {
   authAPI.login(email, password, rememberMe).then((response) => {
     if (response.data.resultCode === 0) {
       dispatch(getAuthUserData());
     } else {
-      let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error';
-      
-      dispatch(stopSubmit('login', {_error: message}));
+      let message =
+        response.data.messages.length > 0
+          ? response.data.messages[0]
+          : "Some Error";
+
+      dispatch(stopSubmit("login", { _error: message }));
     }
   });
 };
 
 export const logout = () => (dispatch) => {
-  authAPI.logout()
-    .then(response => {
-      if(response.data.resultCode === 0){
-        dispatch(setAuthUserDataAC(null, null, null, false));
-      }
-    })
+  authAPI.logout().then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthUserDataAC(null, null, null, false));
+    }
+  });
 };
 
 export default authReducer;

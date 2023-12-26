@@ -5,15 +5,32 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 // import News from "./components/News/News";
 // import Music from "./components/Music/Music";
 // import Settings from "./components/Settings/Settings";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import React from "react";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import Login from './components/Login/Login';
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "./components/hoc/withRouter";
+import { compose } from "redux";
+import { initializeApp } from './redux/appReducer';
+
+import Preloader from "./components/common/preloader/Preloader";
+
 
 const App = (props) => {
+  
+  useEffect(()=> {
+    props.initializeApp();
+  },[props])
+
+  if(!props.initialized){
+    return <Preloader/>   
+  }
+
   return (
-    <BrowserRouter>
+
       <div className={s.app_wrapper}>
         <HeaderContainer />
         <Navbar />
@@ -29,8 +46,13 @@ const App = (props) => {
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
+
   );
 };
-
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+export default compose(
+  connect(mapStateToProps,{initializeApp}),
+  withRouter
+)(App);

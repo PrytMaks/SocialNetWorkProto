@@ -5,7 +5,7 @@ import {getUserProfile, getStatus, updateStatus } from "../../redux/profileReduc
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../hoc/AuthRedirect.jsx";
 import { compose } from "redux";
-
+import { CElement } from "react";
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
 
@@ -33,8 +33,8 @@ const ProfileContainer = (props) => {
   let { userId } = useParams();
   
   if (!userId) {
-    
     userId = props.authorizedUserId;
+    debugger
   }
   //Написал так чтоб избежать ошибки ESLint о зависимостях в useEffect;
   let {getUserProfile, getStatus} = props; 
