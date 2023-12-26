@@ -5,7 +5,6 @@ import {getUserProfile, getStatus, updateStatus } from "../../redux/profileReduc
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../hoc/AuthRedirect.jsx";
 import { compose } from "redux";
-import { CElement } from "react";
 
 // Убрал классовый компонент из-за невозможности использование withRoutes, сделал все с помощью хуков
 
