@@ -23,6 +23,5 @@ const getUsersSelector = (state) => {
 }
 
 export const getUsers = createSelector(getUsersSelector, (users) => {
-  debugger;
   return users.filter(u => true);
 })

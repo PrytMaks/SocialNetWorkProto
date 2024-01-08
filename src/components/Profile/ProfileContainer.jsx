@@ -43,7 +43,7 @@ const ProfileContainer = (props) => {
     getUserProfile(userId);
     getStatus(userId);
   }, [userId, getUserProfile, getStatus]);
-  console.log('Render Profile')
+
   return (
     
     <div>
@@ -57,7 +57,7 @@ const ProfileContainer = (props) => {
 
 
 const mapStateToProps = (state) => {
-  console.log('MPST PROFILE')
+
   return {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
