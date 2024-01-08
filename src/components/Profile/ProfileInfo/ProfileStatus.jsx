@@ -13,8 +13,6 @@ const ProfileStatus = (props) => {
     //setState - асинхронен
     
     setState({...state, editMode: true});
-    debugger
-
   }
 
   const onStatusChange = (e) => {
