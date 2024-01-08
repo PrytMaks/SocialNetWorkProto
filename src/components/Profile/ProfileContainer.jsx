@@ -39,12 +39,13 @@ const ProfileContainer = (props) => {
 
   
   useEffect( () => {
-    console.log('from Effect');
+
     getUserProfile(userId);
     getStatus(userId);
   }, [userId, getUserProfile, getStatus]);
-
+  console.log('Render Profile')
   return (
+    
     <div>
       <Profile profile={props.profile} 
                status = {props.status}
@@ -56,11 +57,12 @@ const ProfileContainer = (props) => {
 
 
 const mapStateToProps = (state) => {
+  console.log('MPST PROFILE')
   return {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
   };
 };
 

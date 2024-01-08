@@ -28,6 +28,7 @@ class UsersAPIComponent extends React.Component {
     this.props.getUsersThunkCreator(pageNum, this.props.pageSize)
   }
   render() {
+    console.log('USERS')
     return <>
     {this.props.isFetching ? <Preloader></Preloader> : null}
     <Users 
@@ -45,6 +46,7 @@ class UsersAPIComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('MPST USERS')
   return {
     users: getUsers(state),
     pageSize: getPageSize(state),
