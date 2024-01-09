@@ -2,7 +2,9 @@ import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
 import AddNewPostReduxForm from "./MyPostReduxInput/MyPostReduxInput";
-const MyPosts = (props) => {
+
+const MyPosts = React.memo((props) => {
+  console.log('Render YOOOO')
   //let newPostElement = React.createRef();
   let postsData = props.posts;
 
@@ -21,6 +23,6 @@ const MyPosts = (props) => {
       <div className={s.posts}>{postsElements} </div>
     </div>
   );
-};
+});
 
 export default MyPosts;
