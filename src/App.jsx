@@ -9,50 +9,50 @@ import { Route, Routes } from "react-router-dom";
 import React from "react";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import Login from './components/Login/Login';
+import Login from "./components/Login/Login";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "./components/hoc/withRouter";
 import { compose } from "redux";
-import { initializeApp } from './redux/appReducer';
+import { initializeApp } from "./redux/appReducer";
 
 import Preloader from "./components/common/preloader/Preloader";
 
-
 const App = (props) => {
-  
-  useEffect(()=> {
+  useEffect(() => {
     props.initializeApp();
-  },[props])
+  }, [props]);
 
-  if(!props.initialized){
-    return <Preloader/>   
+  if (!props.initialized) {
+    return <Preloader />;
   }
 
   return (
-
-      <div className={s.app_wrapper}>
-        <HeaderContainer />
-        <Navbar />
-        <div className={s.app_wrapper_content}>
-          <Routes>
-            <Route path='/profile/:userId?' element={<ProfileContainer />}/>
-            <Route path="/dialogs/*" element={<DialogsContainer />} />
-            {/* <Route path="/news" element={<News />} />
+    <BrowserRouter>
+      <Provider store={store}>
+        <div className={s.app_wrapper}>
+          <HeaderContainer />
+          <Navbar />
+          <div className={s.app_wrapper_content}>
+            <Routes>
+              <Route path="/profile/:userId?" element={<ProfileContainer />} />
+              <Route path="/dialogs/*" element={<DialogsContainer />} />
+              {/* <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} /> */}
-            <Route path='/users' element={<UsersContainer/>}/>
-            <Route path='/login' element={<Login/>}/>
-          </Routes>
+              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-
+      </Provider>
+    </BrowserRouter>
   );
 };
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
-})
+  initialized: state.app.initialized,
+});
 export default compose(
-  connect(mapStateToProps,{initializeApp}),
+  connect(mapStateToProps, { initializeApp }),
   withRouter
 )(App);

@@ -43,5 +43,10 @@
   },
   "devDependencies": {
     "redux-form": "^8.3.10"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios))"
+    ]
   }
 }
