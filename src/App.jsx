@@ -15,9 +15,7 @@ import { connect } from "react-redux";
 import { withRouter } from "./components/hoc/withRouter";
 import { compose } from "redux";
 import { initializeApp } from "./redux/appReducer";
-import store from "./redux/reduxStore";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+
 import Preloader from "./components/common/preloader/Preloader";
 
 const App = (props) => {
