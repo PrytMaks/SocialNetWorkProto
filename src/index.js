@@ -9,9 +9,12 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  //<React.StrictMode> Убрал из-за бага в Redux-form , временно 
-
-       <App />
+  //<React.StrictMode> Убрал из-за бага в Redux-form , временно
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

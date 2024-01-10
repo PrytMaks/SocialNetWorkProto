@@ -15,7 +15,9 @@ import { connect } from "react-redux";
 import { withRouter } from "./components/hoc/withRouter";
 import { compose } from "redux";
 import { initializeApp } from "./redux/appReducer";
-
+import store from "./redux/reduxStore";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import Preloader from "./components/common/preloader/Preloader";
 
 const App = (props) => {
@@ -28,25 +30,23 @@ const App = (props) => {
   }
 
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <div className={s.app_wrapper}>
-          <HeaderContainer />
-          <Navbar />
-          <div className={s.app_wrapper_content}>
-            <Routes>
-              <Route path="/profile/:userId?" element={<ProfileContainer />} />
-              <Route path="/dialogs/*" element={<DialogsContainer />} />
-              {/* <Route path="/news" element={<News />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/settings" element={<Settings />} /> */}
-              <Route path="/users" element={<UsersContainer />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
-        </div>
-      </Provider>
-    </BrowserRouter>
+
+
+<div className={s.app_wrapper}>
+<HeaderContainer />
+<Navbar />
+<div className={s.app_wrapper_content}>
+  <Routes>
+    <Route path="/profile/:userId?" element={<ProfileContainer />} />
+    <Route path="/dialogs/*" element={<DialogsContainer />} />
+    {/* <Route path="/news" element={<News />} />
+  <Route path="/music" element={<Music />} />
+  <Route path="/settings" element={<Settings />} /> */}
+    <Route path="/users" element={<UsersContainer />} />
+    <Route path="/login" element={<Login />} />
+  </Routes>
+</div>
+</div>
   );
 };
 const mapStateToProps = (state) => ({
