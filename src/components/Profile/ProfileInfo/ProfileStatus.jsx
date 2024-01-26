@@ -20,7 +20,6 @@ const ProfileStatus = (props) => {
       ...state,
       status: e.currentTarget.value
     })
-    debugger
   }
 
   const deactivateEditMode = () => {
@@ -30,7 +29,7 @@ const ProfileStatus = (props) => {
     editMode: false
    })
    props.updateStatus(state.status);
-   debugger
+   
         //props.updateStatus(title); 
     
    // props.updateStatus(props.status);
