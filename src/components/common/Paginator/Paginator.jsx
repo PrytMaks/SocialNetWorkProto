@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import s from './Paginator.module.css';
 
-
 export const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
     //Высчитываем количество нужных нам страниц в Page count: делим общее количество всех пользователей с сервера (кол-во страниц определили сами = 5, нужно разделить общее колво пользователей на колво страниц)
   //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
