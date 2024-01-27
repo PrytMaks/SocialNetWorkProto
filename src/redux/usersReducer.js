@@ -64,7 +64,6 @@ const usersReducer = (state = initialState, action) => {
         isFetching: action.isFetching,
       };
     case TOGGLE_IS_FOLLOWING_PROGRESS: {
-      console.log(action);
       return {
         ...state,
         followingInProgress: action.isFetching
@@ -106,7 +105,6 @@ export const getUsersThunkCreator =
     //импортировали getUsers из DAL API (слой доступа к данным)
 
     let data = await usersAPI.getUsers(currentPage, pageSize);
-
     dispatch(setCurrentPage(currentPage));
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(data.items));
