@@ -4,7 +4,6 @@ import React from "react";
 import AddNewPostReduxForm from "./MyPostReduxInput/MyPostReduxInput";
 
 const MyPosts = React.memo((props) => {
-  console.log('Render YOOOO')
   //let newPostElement = React.createRef();
   let postsData = props.posts;
 
