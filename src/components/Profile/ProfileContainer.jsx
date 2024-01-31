@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Profile from "./Profile.jsx";
 import { connect } from "react-redux";
-import {getUserProfile, getStatus, updateStatus, savePhoto } from "../../redux/profileReducer.js";
+import {getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from "../../redux/profileReducer.js";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../hoc/AuthRedirect.jsx";
 import { compose } from "redux";
@@ -52,6 +52,7 @@ const ProfileContainer = (props) => {
                updateStatus = {props.updateStatus}
                isOwner={userId === props.authorizedUserId}
                savePhoto={props.savePhoto}
+               saveProfile={props.saveProfile}
                />
     </div>
   );
@@ -74,6 +75,6 @@ const mapStateToProps = (state) => {
 
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
+  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile }),
   withAuthRedirect
 )(ProfileContainer);
