@@ -26,7 +26,6 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
   if (!profile) {
     return <Preloader />;
   }
-  debugger
   return (
     <div className="">
       <img src={profileBg} alt="img" className={s.profile_bg} />

@@ -54,6 +54,9 @@ export const profileAPI = {
         'Content-Type': 'multipart/form-data'
       }
     })
+  },
+  saveProfile(profile){
+    return axiosInstance.put('profile/', profile);
   }
 }
 
@@ -61,12 +64,18 @@ export const authAPI = {
   me(){
     return  axiosInstance.get(`auth/me`).then(response => response.data);
   },
-  login( email, password, rememberMe = false){
+  login( email, password, rememberMe = false, captcha = null){
     return axiosInstance.post(`/auth/login`, 
-     {email,password, rememberMe}
+     {email,password, rememberMe, captcha}
     );
   },
   logout(){
     return axiosInstance.delete(`/auth/login`);
+  }
+}
+
+export const securityAPI = {
+  getCaptchaUrl(){
+    return  axiosInstance.get(`security/get-captcha-url`)
   }
 }

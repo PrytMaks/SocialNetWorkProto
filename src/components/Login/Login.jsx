@@ -7,14 +7,18 @@ import { Navigate } from "react-router-dom";
 import s from '../common/preloader/formsControls/formsControls.module.css'
 import { createField } from "../common/preloader/formsControls/formsControls";
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
   
   return (
     <form action="" onSubmit={handleSubmit}>
-        {createField('login', 'login', [requiredField], Input)}
-        {createField('Password', 'password', [requiredField], Input, {type: 'password'})}
-        {createField(null, 'rememberMe', [], Input, {type: 'checkbox'},'remember me')}
-      {error && <div className={s.formSummaryError}> {error} </div>}
+      {createField('login', 'login', [requiredField], Input)}
+      {createField('Password', 'password', [requiredField], Input, {type: 'password'})}
+      {createField(null, 'rememberMe', [], Input, {type: 'checkbox'},'remember me')}
+      {captchaUrl && <img src={captchaUrl} alt={'captcha'}></img>}
+
+      {captchaUrl && createField('Symbols from image', 'captcha', [requiredField], Input, {})}
+
+      {error && <div className={s.formSummaryError}>{error}</div>}
       <div>
         <button>Login</button>
       </div>
@@ -30,7 +34,7 @@ const Login = (props) => {
 
   const onSubmit = (formData) => {
     console.log(formData);
-    props.login(formData.login, formData.password, formData.rememberMe, true)
+    props.login(formData.login, formData.password, formData.rememberMe, formData.captcha)
   }
   if(props.isAuth){
     return <Navigate to={'/profile'}></Navigate>
@@ -39,12 +43,13 @@ const Login = (props) => {
   return (
     <div className="">
       <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit}></LoginReduxForm>
+      <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}></LoginReduxForm>
     </div>
   );
 };
 const mapStateToProps  = (state) => ({
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl
 }) 
 
 export default connect(mapStateToProps, {login} )(Login);
