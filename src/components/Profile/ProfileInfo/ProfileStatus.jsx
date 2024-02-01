@@ -12,7 +12,7 @@ const ProfileStatus = (props) => {
   const activateEditMode = () => {
     //setState - асинхронен
     
-    setState({...state, editMode: true});
+    props.isOwner && setState({...state, editMode: true});
   }
 
   const onStatusChange = (e) => {
