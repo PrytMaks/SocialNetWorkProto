@@ -29,8 +29,17 @@ const DialogsContainerWithSuspence = withSuspence(DialogsContainer);
 const ProfileContainerWithSuspence = withSuspence(ProfileContainer);
 
 const App = (props) => {
+
   useEffect(() => {
     props.initializeApp();
+
+    const catchAllUnhandleErrors = () => {
+      alert('Some error occured')
+    }
+    window.addEventListener('unhandledrejection', catchAllUnhandleErrors);
+    return ()=>{
+      window.removeEventListener('unhandledrejection', catchAllUnhandleErrors);
+    }
   }, [props]);
 
   if (!props.initialized) {
