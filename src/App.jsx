@@ -4,7 +4,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 // import News from "./components/News/News";
 // import Music from "./components/Music/Music";
 // import Settings from "./components/Settings/Settings";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import React from "react";
 import UsersContainer from "./components/Users/UsersContainer";
 
@@ -43,6 +43,9 @@ const App = (props) => {
       <Navbar />
       <div className={s.app_wrapper_content}>
         <Routes>
+          <Route path='/'
+            element={<Navigate to='/profile'></Navigate>}
+          />
           <Route
             path="/profile/:userId?"
             element={<ProfileContainerWithSuspence/>}
@@ -51,11 +54,16 @@ const App = (props) => {
             path="/dialogs/*"
             element={<DialogsContainerWithSuspence/>}
           />
+          <Route
+            path="*"
+            element={<div>404 not found</div>}
+          />
           {/* <Route path="/news" element={<News />} />
   <Route path="/music" element={<Music />} />
   <Route path="/settings" element={<Settings />} /> */}
           <Route path="/users" element={<UsersContainer />} />
           <Route path="/login" element={<Login />} />
+         
         </Routes>
       </div>
     </div>
